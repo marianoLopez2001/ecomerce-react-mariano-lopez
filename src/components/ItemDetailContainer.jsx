@@ -10,15 +10,14 @@ const ItemDetailContainer = () => {
     useEffect(()=> {
         fetch('https://fakestoreapi.com/products')
         .then(res => res.json())
-        .then((res) => {setMostrarDetalleProducto(res.find((i) => i.id === idproduct))})
+        .then((res) => {setMostrarDetalleProducto(res.find((i) => parseInt(i.id) === parseInt(idproduct)))})
         
     }, [idproduct])
 
     return (
-        <>
-        <p>ItemDetailContainer</p>
+        <div style={{display: "flex", justifyContent: "center", padding: "3rem"}}>
             <ItemDetail mostrarDetalleProducto={mostrarDetalleProducto}/>
-        </>
+        </div>
     )
 }
 

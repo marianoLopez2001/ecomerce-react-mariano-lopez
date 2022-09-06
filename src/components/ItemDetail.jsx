@@ -11,7 +11,7 @@ export default function ItemDetail(mostrarDetalleProducto) {
     return (
         <>
             <Card sx={{ maxWidth: 145 }}>
-                {/* <CardMedia
+                <CardMedia
                     component="img"
                     alt={mostrarDetalleProducto.mostrarDetalleProducto.description}
                     height="200"
@@ -30,7 +30,7 @@ export default function ItemDetail(mostrarDetalleProducto) {
                 </CardContent>
                 <CardActions>
                     <ItemCount/>
-                </CardActions> */}
+                </CardActions>
             </Card>
         </>
     );
