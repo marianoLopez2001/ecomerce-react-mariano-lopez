@@ -1,35 +1,41 @@
 import { useEffect, useState } from "react"
-import Catalogo from "../data/data"
+import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
 
-//FUNCION QUE CON UNA PROMESA QUE ME DEVUELVE UN CATALOGO Y RENDERIZA EL COMPONENTE LIST ITEM
+const ItemDetailContainer = () => {
 
-const ItemListContainer = () => {
-
-    const [productos, setProductos] = useState([])
-    const [cargando, setCargando] = useState("asd")
+    const [mostrarProducto, setMostrarProducto] = useState([])
+    const [cargando, setCargando] = useState(true)
+    const { idcategory } = useParams()
 
     useEffect(() => {
+        setTimeout(() => {
+            fetch('https://fakestoreapi.com/products')
+                .then(res => res.json())
+                .then((res) => {
 
-        const promesa = new Promise((res, rej) => {
-            setTimeout(() => {
-                res(Catalogo)
-            }, 2000);
-        })
+                    if (idcategory) {
+                        setMostrarProducto(res.filter((i) => {
+                            return (i.category === idcategory)}));
+                            setCargando(false)
+                    }
+                    else {
+                        setMostrarProducto(res);
+                        setCargando(false)
+                    }
+                })
+        }, 2000);
 
-        promesa
-            .then((res) => {
-                setProductos(res)
-                setCargando(false)
-            })
-    }, [])
+    }, [idcategory])
 
     return (
-        <div>
-            <p>{cargando ? "cargando" : "ya cargó"}</p>
-            <ItemList productos={productos} />
-        </div>
+        <>
+            <p>{cargando ? "cargando" : "Exito"}</p>
+            <div style={{ display: "flex", justifyContent: "evenly", flexDirection: "row", flexWrap: "wrap", gap: "3rem", margin: "2rem" }}>
+                <ItemList productos={mostrarProducto} />
+            </div>
+        </>
     )
 }
 
-export default ItemListContainer
+export default ItemDetailContainer

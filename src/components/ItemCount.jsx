@@ -33,11 +33,11 @@ export default function ItemCount() {
     return (
         <div className="cardContainer">
             <div className="cardControles">
-                <Button onClick={restarCantProducto} variant="contained">-</Button>
+                <Button className="btnCardCount" onClick={restarCantProducto} variant="contained">-</Button>
                 <p>{newInitial}</p>
-                <Button onClick={sumarCantProducto} variant="contained">+</Button>
+                <Button className="btnCardCount" onClick={sumarCantProducto} variant="contained">+</Button>
             </div>
-            <Button onClick={onAdd} variant="contained">Agregar al carrito</Button>
+            <Button className="btnCardCount" onClick={onAdd} variant="contained">Agregar al carrito</Button>
         </div>
     )
 }

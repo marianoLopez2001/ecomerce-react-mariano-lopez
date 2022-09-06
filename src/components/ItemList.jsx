@@ -4,12 +4,12 @@ import Item from "./Item"
 
 function ItemList(productos) {
 
-    const newProducto = Object.values(productos)
+    const newProductos = Object.values(productos)
 
     return (
-        <div>
-            {newProducto[0].map((i) => {
-                return <Item key={i.id} id={i.id} nombre={i.nombre} precio={i.precio}/>
+        <div className="ItemListContainer">
+            {newProductos[0].map((i) => {
+                return <Item key={i.id} id={i.id} image={i.image} title={i.title} price={i.price} description={i.description} category={i.category} />
             })}
         </div>
     )

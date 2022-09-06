@@ -11,15 +11,21 @@
 .cardContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  max-width: 300px;
-  padding: 1rem;
-  margin: 1rem;
-  border: 1px solid black;
 }
 
 .cardControles {
   display: flex;
   justify-content: space-between;
-  margin: 1rem;
+  margin: 0.5rem;
+}
+
+.ItemListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.NavBarLink {
+  text-decoration: none;
+  color: white;
 }

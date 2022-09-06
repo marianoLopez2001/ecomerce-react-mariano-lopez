@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState} from "react"
+import { useParams } from "react-router-dom"
 import ItemDetail from "./ItemDetail"
 
 const ItemDetailContainer = () => {
 
-    const [mostrarProducto, setMostrarProducto] = useState({})
-    const [cargando, setCargando] = useState(true)
+    const [mostrarDetalleProducto, setMostrarDetalleProducto] = useState([])
+    const { idproduct } = useParams()
 
-    useEffect(() => {
-        setTimeout(() => {
-            fetch('https://fakestoreapi.com/products/1')
-                .then(res => res.json())
-                .then((res) => { setMostrarProducto(res) })
-                .then(() => { setCargando(false) })
-        }, 2000);
-    }, [])
+    useEffect(()=> {
+        fetch('https://fakestoreapi.com/products')
+        .then(res => res.json())
+        .then((res) => {setMostrarDetalleProducto(res.find((i) => i.id === idproduct))})
+        
+    }, [idproduct])
 
     return (
         <>
-            <p>{cargando ? "cargando" : "Exito"}</p>
-            <ItemDetail props={mostrarProducto} />
+        <p>ItemDetailContainer</p>
+            <ItemDetail mostrarDetalleProducto={mostrarDetalleProducto}/>
         </>
     )
 }
