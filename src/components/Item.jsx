@@ -6,7 +6,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ItemCount from "./ItemCount"
 
 export default function ItemDetail(i) {
 
@@ -34,7 +33,7 @@ export default function ItemDetail(i) {
                     <Button onClick={() => navegar(`/product/${i.id}`)}>Ver más</Button>
                 </CardContent>
                 <CardActions>
-                    <ItemCount />
+                    {/* Aca iria un counter  */}
                 </CardActions>
             </Card>
         </div>

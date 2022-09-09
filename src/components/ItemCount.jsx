@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom"
 
-export default function ItemCount() {
+export default function ItemCount(props) {
+
+    const {agregarAlCarrito} = props
 
     const producto1 = { id: 1, stock: 10, initial: 1 }
 
@@ -27,17 +30,25 @@ export default function ItemCount() {
     }
 
     const onAdd = () => {
-        alert(`Compraste el producto ${newInitial} veces`)
+        setMostrarComponente(false);
+        agregarAlCarrito(newInitial)
     }
 
+    const [mostrarComponente, setMostrarComponente] = useState(true);
+
     return (
-        <div className="cardContainer">
-            <div className="cardControles">
-                <Button className="btnCardCount" onClick={restarCantProducto} variant="contained">-</Button>
-                <p>{newInitial}</p>
-                <Button className="btnCardCount" onClick={sumarCantProducto} variant="contained">+</Button>
+        <>
+            <div className={mostrarComponente ? "cardContainer" : "noMostrar"}>
+                <div className="cardControles">
+                    <Button className="btnCardCount" onClick={restarCantProducto} variant="contained">-</Button>
+                    <p>{newInitial}</p>
+                    <Button className="btnCardCount" onClick={sumarCantProducto} variant="contained">+</Button>
+                </div>
+                <Button className="btnCardCount" onClick={onAdd} variant="contained">Agregar al carrito</Button>
             </div>
-            <Button className="btnCardCount" onClick={onAdd} variant="contained">Agregar al carrito</Button>
-        </div>
+            <Link style={{ display: "flex", margin: "auto" }} to={"/cart"} className={!mostrarComponente ? "mostrar" : null} >
+                <Button variant="contained">Ir Al Carro</Button>
+            </Link>
+        </>
     )
 }

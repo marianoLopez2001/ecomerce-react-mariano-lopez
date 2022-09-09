@@ -29,3 +29,11 @@
   text-decoration: none;
   color: white;
 }
+
+.noMostrar {
+  display: none;
+}
+
+.mostrar {
+  display: block;
+}

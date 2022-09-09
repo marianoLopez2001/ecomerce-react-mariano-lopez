@@ -6,30 +6,34 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import ItemCount from './ItemCount';
 
-export default function ItemDetail(mostrarDetalleProducto) {
+export default function ItemDetail({mostrarDetalleProducto}) {
+
+    function agregarAlCarrito(newInitial) {
+        console.log("Acabo de recibir " + newInitial);
+    }
 
     return (
         <>
             <Card sx={{ maxWidth: 145 }}>
                 <CardMedia
                     component="img"
-                    alt={mostrarDetalleProducto.mostrarDetalleProducto.description}
+                    alt={mostrarDetalleProducto.description}
                     height="200"
-                    image={mostrarDetalleProducto.mostrarDetalleProducto.image}
+                    image={mostrarDetalleProducto.image}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {mostrarDetalleProducto.mostrarDetalleProducto.title}
+                        {mostrarDetalleProducto.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        {mostrarDetalleProducto.mostrarDetalleProducto.description}
+                        {mostrarDetalleProducto.description}
                     </Typography>
                     <Typography variant="h5" color="text.secondary">
-                        {mostrarDetalleProducto.mostrarDetalleProducto.price}
+                        {mostrarDetalleProducto.price}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <ItemCount/>
+                    <ItemCount agregarAlCarrito={(newInitial) => {agregarAlCarrito(newInitial)}} />
                 </CardActions>
             </Card>
         </>
