@@ -4,12 +4,9 @@ import { Link } from "react-router-dom"
 
 export default function ItemCount(props) {
 
-    const {agregarAlCarrito} = props
-
+    const { onAdd, mostrarComponente } = props
     const producto1 = { id: 1, stock: 10, initial: 1 }
-
     const { stock, initial } = producto1
-
     const [newInitial = initial, setInitial] = useState(initial);
 
     const sumarCantProducto = () => {
@@ -29,13 +26,6 @@ export default function ItemCount(props) {
         }
     }
 
-    const onAdd = () => {
-        setMostrarComponente(false);
-        agregarAlCarrito(newInitial)
-    }
-
-    const [mostrarComponente, setMostrarComponente] = useState(true);
-
     return (
         <>
             <div className={mostrarComponente ? "cardContainer" : "noMostrar"}>
@@ -44,11 +34,16 @@ export default function ItemCount(props) {
                     <p>{newInitial}</p>
                     <Button className="btnCardCount" onClick={sumarCantProducto} variant="contained">+</Button>
                 </div>
-                <Button className="btnCardCount" onClick={onAdd} variant="contained">Agregar al carrito</Button>
+                <Button className="btnCardCount" onClick={() => onAdd(newInitial)} variant="contained">Agregar al carrito</Button>
             </div>
-            <Link style={{ display: "flex", margin: "auto" }} to={"/cart"} className={!mostrarComponente ? "mostrar" : null} >
-                <Button variant="contained">Ir Al Carro</Button>
-            </Link>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+                <Link to={"/cart"} className={!mostrarComponente ? "mostrar" : null} >
+                    <Button style={{ marginBottom: "1rem", margin: "auto" }} variant="contained">Ir Al Carro</Button>
+                </Link>
+                <Link to={"/"} style={{ margin: "auto" }} className={!mostrarComponente ? "mostrar" : null} >
+                    <Button variant="contained">Seguir Comprando</Button>
+                </Link>
+            </div>
         </>
     )
 }

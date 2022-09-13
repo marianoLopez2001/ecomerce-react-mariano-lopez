@@ -5,11 +5,22 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import ItemCount from './ItemCount';
+import { context } from "./Context"
+import { useContext } from 'react';
+import { useState } from 'react';
 
-export default function ItemDetail({mostrarDetalleProducto}) {
+export default function ItemDetail({ mostrarDetalleProducto }) {
 
-    function agregarAlCarrito(newInitial) {
-        console.log("Acabo de recibir " + newInitial);
+    const { agregarAlCarrito } = useContext(context)
+
+    const {id, description, image, title, price} = mostrarDetalleProducto
+
+    const [mostrarComponente, setMostrarComponente] = useState(true);
+
+    const onAdd = (newInitial) => {
+        setMostrarComponente(false);
+        const objetoAgregado = {id, title, image, price, quantity: newInitial};
+        agregarAlCarrito(objetoAgregado, newInitial);
     }
 
     return (
@@ -17,23 +28,23 @@ export default function ItemDetail({mostrarDetalleProducto}) {
             <Card sx={{ maxWidth: 145 }}>
                 <CardMedia
                     component="img"
-                    alt={mostrarDetalleProducto.description}
+                    alt={description}
                     height="200"
-                    image={mostrarDetalleProducto.image}
+                    image={image}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {mostrarDetalleProducto.title}
+                        {title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        {mostrarDetalleProducto.description}
+                        {description}
                     </Typography>
                     <Typography variant="h5" color="text.secondary">
-                        {mostrarDetalleProducto.price}
+                        {price}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <ItemCount agregarAlCarrito={(newInitial) => {agregarAlCarrito(newInitial)}} />
+                    <ItemCount mostrarComponente={mostrarComponente} onAdd={(newInitial) => { onAdd(newInitial) }} />
                 </CardActions>
             </Card>
         </>

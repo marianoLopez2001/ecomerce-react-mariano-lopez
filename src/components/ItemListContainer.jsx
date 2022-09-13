@@ -30,7 +30,7 @@ const ItemDetailContainer = () => {
     return (
         <>
             <p>{cargando ? "cargando" : ""}</p>
-            <div style={{ display: "flex", justifyContent: "evenly", flexDirection: "row", flexWrap: "wrap", gap: "3rem", margin: "2rem" }}>
+            <div className="productContainer">
                 <ItemList productos={mostrarProducto} />
             </div>
         </>
