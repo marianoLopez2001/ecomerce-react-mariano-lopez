@@ -1,9 +1,19 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import * as React from 'react';
+import { useContext } from 'react';
+import { context } from './Context';
+import {NavLink} from 'react-router-dom'
 
 const CartWidget = () => {
+
+    const { cartCounter } = useContext(context)
+
     return (
-        <ShoppingCartIcon style={{color : "white"}}/>
+        <div style={{display:'flex'}}>
+            <NavLink to={'/cart'}>
+                <ShoppingCartIcon style={{ color: "white" }} />
+            </NavLink>
+            <p style={{ color: "white" }} >{cartCounter === 0 ? "" : cartCounter}</p>
+        </div>
     )
 }
 

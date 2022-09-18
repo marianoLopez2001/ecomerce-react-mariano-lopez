@@ -27,9 +27,6 @@ const NavBar = () => {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -62,7 +59,7 @@ const NavBar = () => {
                 LOGO
               </Typography>
             </NavLink>
-      
+
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
@@ -125,12 +122,10 @@ const NavBar = () => {
                 </MenuItem>
               ))}
             </Box>
-      
+
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip>
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <CartWidget />
-                </IconButton>
               </Tooltip>
               <Menu
                 sx={{ mt: '45px' }}

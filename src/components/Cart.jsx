@@ -3,18 +3,29 @@ import * as React from 'react';
 import { context } from "./Context"
 import { useContext } from 'react';
 import { Button } from '@mui/material';
+import { Link } from 'react-router-dom'
 
 export default function Cart() {
 
-  const { cart, despejarCarrito } = useContext(context)
+  const { cart, despejarCarrito, agregarCartTotal } = useContext(context)
 
   return (
     <>
-      <h2 style={{ textAlign: "center", padding: "1rem" }}>Carrito</h2>
-      <div style={{ textAlign: "center", padding: "1rem" }}>
-        <Button onClick={despejarCarrito} variant='contained'>Clear</Button>
-      </div>
-      {cart.length === 0 ? <p style={{ textAlign: "center" }}>Su carrito esta vacio</p> : null}
+      <h2 style={{ textAlign: "center", paddingTop: "1rem" }}>Carrito</h2>
+
+      {cart.length === 0 ?
+        <div style={{ textAlign: "center" }}>
+          <p>Su carrito esta vacio</p>
+          <p>Desea volver a productos?</p>
+          <Link style={{ textDecoration: "none" }} to={"/"}>
+            <Button style={{ margin: "1rem" }} variant='contained'>Volver a productos</Button>
+          </Link>
+        </div>
+        : <div style={{ textAlign: "center" }}>
+          <p style={{padding:"1rem"}}>Total a pagar : ${agregarCartTotal()}</p>
+          <Button onClick={despejarCarrito} variant='contained'>Clear</Button>
+        </div>}
+
       <div className='productContainer'>
         {cart.map((i) => {
           return (

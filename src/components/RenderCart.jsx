@@ -8,7 +8,7 @@ import { useContext } from 'react';
 
 const RenderCart = ({ i }) => {
 
-    const { eliminarDelCarrito } = useContext(context)
+    const { eliminarDelCarrito, cantState } = useContext(context)
 
     const { image, description, price, id, quantity, title } = i
 
@@ -20,7 +20,7 @@ const RenderCart = ({ i }) => {
                     {title}
                 </Typography>
                 <Typography variant="h6" color="text.secondary">
-                    Cantidad: {quantity}
+                    Cantidad: {cantState}
                 </Typography>
                 <Typography variant="h6" color="text.secondary">
                     Precio: {price}
