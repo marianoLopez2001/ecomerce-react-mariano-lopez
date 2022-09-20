@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import CartWidget from './CartWidget';
@@ -124,9 +123,7 @@ const NavBar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip>
                   <CartWidget />
-              </Tooltip>
               <Menu
                 sx={{ mt: '45px' }}
                 id="menu-appbar"

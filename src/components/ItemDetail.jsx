@@ -13,13 +13,13 @@ export default function ItemDetail({ mostrarDetalleProducto }) {
 
     const { agregarAlCarrito } = useContext(context)
 
-    const {id, description, image, title, price} = mostrarDetalleProducto
+    const { id, description, image, title, price } = mostrarDetalleProducto
 
     const [mostrarComponente, setMostrarComponente] = useState(true);
 
     const onAdd = (newInitial) => {
         setMostrarComponente(false);
-        const objetoAgregado = {id, title, image, price, quantity: newInitial};
+        const objetoAgregado = { id, title, image, price, quantity: newInitial };
         agregarAlCarrito(objetoAgregado, newInitial);
     }
 
@@ -33,6 +33,7 @@ export default function ItemDetail({ mostrarDetalleProducto }) {
                     image={image}
                 />
                 <CardContent>
+
                     <Typography gutterBottom variant="h5" component="div">
                         {title}
                     </Typography>

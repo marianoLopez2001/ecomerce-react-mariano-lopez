@@ -8,17 +8,21 @@ export default function Context({ children }) {
   //ESTADOS GLOBALES
 
   const [cart, setCart] = useState([])
-  const [cantState, setCantState] = useState()
   const [cartCounter, setCartCounter] = useState(0)
 
   //FUNCIONES GLOBALES
+
+  const setearCantWidget = () => { setCartCounter(cart.map(item => item.quantity).reduce((prev, curr) => prev + curr, 0)) }
+
+  useEffect(() => {
+    setearCantWidget()
+  })
 
   const agregarCartTotal = () => {
     return cart.reduce((acc, i) => acc += i.price * i.quantity, 0)
   }
 
   function agregarAlCarrito(item) {
-    setCantState(item.quantity)
     const existe = cart.find((i) => i.id === item.id)
 
     if (existe) {
@@ -44,21 +48,17 @@ export default function Context({ children }) {
     if (item.quantity === 1) {
       setCart(cart.filter((i) => i.id !== id))
     } else {
-      setCantState(item.quantity--) 
+      item.quantity--;
     }
-    console.log(cart);
+    setearCantWidget()
   }
 
   const despejarCarrito = () => {
     setCart([])
   }
 
-  useEffect(() => {
-    setCartCounter(cart.map(item => item.quantity).reduce((prev, curr) => prev + curr, 0))
-  }, [cart, eliminarDelCarrito])
-
   return (
-    <context.Provider value={{ cart, setCart, agregarAlCarrito, despejarCarrito, eliminarDelCarrito, agregarCartTotal, cantState, setCartCounter, cartCounter }}>
+    <context.Provider value={{ cart, setCart, agregarAlCarrito, despejarCarrito, eliminarDelCarrito, agregarCartTotal, setCartCounter, cartCounter }}>
       {children}
     </context.Provider>
   )

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
+import { getDocs, getFirestore, collection } from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
 
@@ -10,26 +11,31 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
 
-        fetch('https://fakestoreapi.com/products')
-            .then(res => res.json())
-            .then((res) => {
+        const db = getFirestore() //CONECTO
+        const collectionRef = collection(db, 'productos');
+        getDocs(collectionRef).then((res) => {
 
-                if (idcategory) {
-                    setMostrarProducto(res.filter((i) => {
-                        return (i.category === idcategory)
-                    }));
-                    setCargando(false)
-                }
-                else {
-                    setMostrarProducto(res);
-                    setCargando(false)
-                }
+            let productosLimpios = res.docs.map(i => {
+                return ({ ...i.data(), id: i.id })
             })
+
+            if (idcategory) {
+                setMostrarProducto(productosLimpios.filter((i) => {
+                    return (i.category === idcategory)
+                }));
+                setCargando(false)
+            }
+            else {
+                setMostrarProducto(productosLimpios);
+                setCargando(false)
+            }
+        })
     }, [idcategory])
 
     return (
         <>
             <p>{cargando ? "cargando" : ""}</p>
+            <h1 style={{ textAlign: 'center', marginTop:'1rem' }}>Productos</h1>
             <div className="productContainer">
                 <ItemList productos={mostrarProducto} />
             </div>
