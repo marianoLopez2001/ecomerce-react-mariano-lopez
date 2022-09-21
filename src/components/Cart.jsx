@@ -22,8 +22,11 @@ export default function Cart() {
           </Link>
         </div>
         : <div style={{ textAlign: "center" }}>
-          <p style={{padding:"1rem"}}>Total a pagar : ${agregarCartTotal()}</p>
+          <p style={{ padding: "1rem" }}>Total a pagar : ${agregarCartTotal()}</p>
           <Button onClick={despejarCarrito} variant='contained'>Clear</Button>
+          <Link to={'/payment'}>
+            <Button variant='contained'>Terminar Compra</Button>
+          </Link>
         </div>}
 
       <div className='productContainer'>

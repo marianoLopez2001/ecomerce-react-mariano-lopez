@@ -5,6 +5,7 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart';
 import Context from "./components/Context"
+import Payment from './components/Payment';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<ItemListContainer />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/payment' element={<Payment />} />
           <Route path='/category/:idcategory' element={<ItemListContainer />} />
           <Route path='/product/:idproduct' element={<ItemDetailContainer />} />
         </Routes>
