@@ -27,23 +27,26 @@ export default function ItemCount(props) {
     }
 
     return (
-        <>
-            <div className={mostrarComponente ? "cardContainer" : "noMostrar"}>
-                <div className="cardControles">
-                    <Button className="btnCardCount" onClick={restarCantProducto} variant="contained">-</Button>
-                    <p>{newInitial}</p>
-                    <Button className="btnCardCount" onClick={sumarCantProducto} variant="contained">+</Button>
+        <div>
+            {!mostrarComponente ?
+                <div style={{display:'flex', flexDirection:'column'}}>
+                    <div className="cardControles">
+                        <Button className="btnCardCount" onClick={restarCantProducto} variant="contained" color="secondary">-</Button>
+                        <p>{newInitial}</p>
+                        <Button className="btnCardCount" onClick={sumarCantProducto} variant="contained" color="secondary">+</Button>
+                    </div>
+                    <Button className="btnCardCount" onClick={() => onAdd(newInitial)} variant="contained" color="secondary">Agregar al carrito</Button>
                 </div>
-                <Button className="btnCardCount" onClick={() => onAdd(newInitial)} variant="contained">Agregar al carrito</Button>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-                <Link to={"/cart"} className={!mostrarComponente ? "mostrar" : null} >
-                    <Button style={{ marginBottom: "1rem", margin: "auto" }} variant="contained">Ir Al Carro</Button>
-                </Link>
-                <Link to={"/"} style={{ margin: "auto" }} className={!mostrarComponente ? "mostrar" : null} >
-                    <Button variant="contained">Seguir Comprando</Button>
-                </Link>
-            </div>
-        </>
+                :
+                <div>
+                    <Link to={"/cart"}  >
+                        <Button style={{width:'100%', textDecoration:'none', borderRadius:'0'}} variant="contained" color="secondary" >Ir Al Carro</Button>
+                    </Link>
+                    <Link style={{textDecoration:'none'}} to={"/"} >
+                        <Button style={{width:'100%'}} variant="contained" color="secondary">Seguir Comprando</Button>
+                    </Link>
+                </div>
+            }
+        </div>
     )
 }

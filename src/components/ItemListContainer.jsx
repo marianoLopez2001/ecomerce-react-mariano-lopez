@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
+import { ClipLoader } from "react-spinners";
 import { getDocs, getFirestore, collection } from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
@@ -34,8 +35,8 @@ const ItemDetailContainer = () => {
 
     return (
         <>
-            <p>{cargando ? "cargando" : ""}</p>
-            <h1 style={{ textAlign: 'center', marginTop:'1rem' }}>Productos</h1>
+            <ClipLoader color="#9c27b0" cssOverride={{ display: "flex", margin:'auto', alignItems:'center' }} size={100} loading={cargando} />
+            <h1 style={{ textAlign: 'center', marginTop: '1rem' }}>{!cargando ? "Productos" : ""}</h1>
             <div className="productContainer">
                 <ItemList productos={mostrarProducto} />
             </div>

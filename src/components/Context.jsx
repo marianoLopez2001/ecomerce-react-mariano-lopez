@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { createContext } from 'react'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const context = createContext()
 
@@ -37,6 +39,15 @@ export default function Context({ children }) {
     } else {
       setCart([...cart, item])
     }
+    toast.success('Producto agregado!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
 
   const eliminarDelCarrito = (id) => {
@@ -46,15 +57,25 @@ export default function Context({ children }) {
     })
 
     if (item.quantity === 1) {
-      setCart(cart.filter((i) => i.id !== id))
+      setCart(cart.filter((i) => i.id !== id));
+
     } else {
       item.quantity--;
     }
-    setearCantWidget()
+    setearCantWidget();
+    toast.error('Producto eliminado!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
 
   const despejarCarrito = () => {
-    setCart([])
+    setCart([]);
   }
 
   return (

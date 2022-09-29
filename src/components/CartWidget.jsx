@@ -7,6 +7,8 @@ const CartWidget = () => {
 
     const { cartCounter } = useContext(context)
 
+    //Contador de productos 
+
     return (
         <div style={{display:'flex'}}>
             <NavLink to={'/cart'}>

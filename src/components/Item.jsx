@@ -14,7 +14,7 @@ export default function ItemDetail({i}) {
 
     return (
         <div>
-            <Card sx={{ width: 145, height: 405 }}>
+            <Card sx={{ width: 145, height: 'fitContent' }}>
                 <CardMedia
                     component="img"
                     alt={description}
@@ -25,13 +25,10 @@ export default function ItemDetail({i}) {
                     <Typography gutterBottom variant="h5" component="div">
                         {title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {description}
-                    </Typography>
                     <Typography variant="h5" color="text.secondary">
                         {price} $
                     </Typography>
-                    <Button onClick={() => navegar(`/product/${id}`)}>Ver más</Button>
+                    <Button color="secondary" variant='outlined' onClick={() => navegar(`/product/${id}`)}>Ver más</Button>
                 </CardContent>
             </Card>
         </div>

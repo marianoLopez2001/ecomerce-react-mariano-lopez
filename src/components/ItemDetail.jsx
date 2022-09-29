@@ -1,5 +1,4 @@
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
@@ -15,17 +14,17 @@ export default function ItemDetail({ mostrarDetalleProducto }) {
 
     const { id, description, image, title, price } = mostrarDetalleProducto
 
-    const [mostrarComponente, setMostrarComponente] = useState(true);
+    const [mostrarComponente, setMostrarComponente] = useState(false);
 
     const onAdd = (newInitial) => {
-        setMostrarComponente(false);
+        setMostrarComponente(true);
         const objetoAgregado = { id, title, image, price, quantity: newInitial };
         agregarAlCarrito(objetoAgregado, newInitial);
     }
 
     return (
         <>
-            <Card sx={{ maxWidth: 145 }}>
+            <Card sx={{ maxWidth: 190 }}>
                 <CardMedia
                     component="img"
                     alt={description}
@@ -33,7 +32,6 @@ export default function ItemDetail({ mostrarDetalleProducto }) {
                     image={image}
                 />
                 <CardContent>
-
                     <Typography gutterBottom variant="h5" component="div">
                         {title}
                     </Typography>
@@ -44,9 +42,7 @@ export default function ItemDetail({ mostrarDetalleProducto }) {
                         {price}
                     </Typography>
                 </CardContent>
-                <CardActions>
                     <ItemCount mostrarComponente={mostrarComponente} onAdd={(newInitial) => { onAdd(newInitial) }} />
-                </CardActions>
             </Card>
         </>
     );

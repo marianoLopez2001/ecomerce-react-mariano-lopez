@@ -12,20 +12,22 @@ export default function Cart() {
   return (
     <>
       <h2 style={{ textAlign: "center", paddingTop: "1rem" }}>Carrito</h2>
+      
+      {/* Render condicional si el carrito esta vacio */}
 
       {cart.length === 0 ?
         <div style={{ textAlign: "center" }}>
           <p>Su carrito esta vacio</p>
           <p>Desea volver a productos?</p>
           <Link style={{ textDecoration: "none" }} to={"/"}>
-            <Button style={{ margin: "1rem" }} variant='contained'>Volver a productos</Button>
+            <Button color="secondary" style={{ margin: "1rem" }} variant='contained'>Volver a productos</Button>
           </Link>
         </div>
         : <div style={{ textAlign: "center" }}>
           <p style={{ padding: "1rem" }}>Total a pagar : ${agregarCartTotal()}</p>
-          <Button onClick={despejarCarrito} variant='contained'>Clear</Button>
+          <Button color="secondary" onClick={despejarCarrito} variant='contained'>Clear</Button>
           <Link to={'/payment'}>
-            <Button variant='contained'>Terminar Compra</Button>
+            <Button color="secondary" variant='contained'>Terminar Compra</Button>
           </Link>
         </div>}
 
